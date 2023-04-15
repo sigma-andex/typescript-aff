@@ -1,4 +1,5 @@
 import {
+  Effect,
   bind,
   bindFlipped,
   delay,
@@ -12,7 +13,7 @@ import { pipe } from "fp-ts/lib/function.js";
 
 describe("testing aff", () => {
   test("convert promise <=> aff", async () => {
-    const promiseE = async () => {
+    const promiseE: Effect<Promise<number>> = async () => {
       console.log("Hello world!");
       return 5;
     };
