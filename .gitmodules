@@ -1,9 +1,6 @@
 [submodule "purescript-aff"]
 	path = purescript-aff
 	url = https://github.com/purescript-contrib/purescript-aff.git
-[submodule "purescript-js-promise"]
-	path = purescript-js-promise
-	url = https://github.com/purescript-contrib/purescript-js-promise.git
 [submodule "purescript-js-promise-aff"]
 	path = purescript-js-promise-aff
 	url = https://github.com/purescript-contrib/purescript-js-promise-aff.git
