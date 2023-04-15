@@ -12,6 +12,9 @@ export function toAffE<T>(promise: () => Promise<T>): Aff<T> {
 export function fromAff<T>(aff: Aff<T>): Effect<Promise<T>> {
   return PA.fromAff()(aff);
 }
+export function unsafeFromAff<T>(aff: Aff<T>): Promise<T> {
+  return fromAff<T>(aff)();
+}
 
 export function launchAff_<T>(aff: Aff<T>): Effect<T> {
   return A.launchAff_(aff);
