@@ -1,6 +1,7 @@
 import {
   bind,
   bindFlipped,
+  delay,
   fromAff,
   launchAff_,
   pure,
@@ -30,12 +31,16 @@ describe("testing aff", () => {
   });
 
   test("support bind", async () => {
-    const aff = pipe(
-      pure(5),
-      bindFlipped((n: number) => pure(n + 10)),
-      bindFlipped((n: number) => pure(n + 100))
+    const aff = bind(pure(5), (n: number) =>
+      bind(pure(10), (m: number) => pure(n + m + 100))
     );
     const result = await unsafeFromAff(aff);
     expect(result).toBe(115);
   });
+  test("support delay", async () => {
+    const aff = bind(delay(3000), (x) => pure("delay"));
+    const result = await unsafeFromAff(aff);
+
+    expect(result).toBe("delay");
+  }, 5000);
 });
