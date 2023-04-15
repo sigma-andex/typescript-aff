@@ -25,8 +25,8 @@ export function pure<T>(value: T): Aff<T> {
   return A.applicativeAff.pure(value);
 }
 
-export function bind<T>(aff: Aff<T>, f: (t: T) => Aff<T>): Aff<T> {
-  return A.bindAff.bind(aff)(f);
+export function bind<T>(aff: Aff<T>): (f: (t: T) => Aff<T>) => Aff<T> {
+  return (f) => A.bindAff.bind(aff)(f);
 }
 
 export function bindFlipped<T>(f: (t: T) => Aff<T>): (aff: Aff<T>) => Aff<T> {
